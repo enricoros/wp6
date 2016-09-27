@@ -20,7 +20,7 @@ fi
 
 
 function configure {
-    ifaces=($(ifconfig -a | grep encap | awk {'print $1'} | grep -v lo))
+    ifaces=($(ifconfig -a | grep "encap\|mtu" | awk -F'[ :]' {'print $1'} | grep -v lo))
 
     printf "\nSelect WiFi Pineapple Interface:\n"
     for i in "${!ifaces[@]}"; do
